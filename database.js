@@ -15,16 +15,15 @@ const con = mysql.createConnection({
 // Creating a promise for the databaseConnection
 function databaseConnection() {
     return new Promise((resolve, reject) => {
-
+        // connecting to the database
         con.connect(err => {
-
+            // if connection is successful
             if (!err) {
                 resolve(true);
             } else {
-                reject(err.message)
+                reject(err.message);
             }
         });
-
     });
 }
 
