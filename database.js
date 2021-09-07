@@ -4,8 +4,7 @@ const dotenv = require("dotenv");
 // configuring the dotenv file
 dotenv.config();
 
-// Creating a connection
-
+// Creating a mysql database connection
 const con = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
@@ -13,8 +12,8 @@ const con = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+// Creating a promise for the databaseConnection
 function databaseConnection() {
-
     return new Promise((resolve, reject) => {
 
         con.connect(err => {
@@ -29,7 +28,7 @@ function databaseConnection() {
     });
 }
 
-
+// exporting the databaseConnection function and the con object
 module.exports = {
     databaseConnection,
     con
