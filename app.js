@@ -3,9 +3,10 @@ const cors = require("cors");
 const { databaseConnection } = require("./database");
 const dotenv = require("dotenv");
 
+// creating a express app
 const app = express();
 
-// adding the cors middleware
+// middleware for cors(cross origin resource sharing)
 app.use(cors());
 
 // middleware for json
@@ -20,10 +21,10 @@ databaseConnection();
 // configuring the dotenv
 dotenv.config();
 
-// PORT 
+// Creating a PORT
 const PORT = process.env.PORT;
 
-
+//listening to the incoming request
 app.listen(PORT, (err) => {
 
     if (err) return console.log(err.message);
