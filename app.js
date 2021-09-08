@@ -23,6 +23,18 @@ app.use("/api", medicine);
 // Creating a PORT
 const PORT = process.env.PORT || 1212;
 
+// Not Found response from the unknown endpoint
+app.all("*", (req, res) => {
+    return apiResponse.notFoundResponse(res, "Page Not Found");
+});
+
+// Creating a middleware for every request to check for unauthorizedError
+app.use((err, req, res) => {
+    if (err.name === "UnauthorizedError") {
+        return apiResponse.unauthorizedError(res, err.message);
+    }
+})
+
 // listening for incoming request
 app.listen(PORT, (err) => {
     // if any error then just return 
