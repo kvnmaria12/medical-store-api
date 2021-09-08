@@ -19,7 +19,7 @@ exports.deleteMedicineData =
 
                 const id = req.body.id;
 
-                // SQL Query for fetching the data from the database
+                // SQL Query for deleting the data from the database
                 const sqlQuery = `DELETE FROM medicine WHERE id = '${id}'`;
 
                 // getting the medicine data from the mysql database
