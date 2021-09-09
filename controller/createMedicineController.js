@@ -6,6 +6,7 @@ const { validationResult, check } = require("express-validator");
 // exporting the createMedicine function
 exports.createMedicine =
     [
+        // checking the request body with certain conditions using express-validator
         check("id").notEmpty().withMessage("Medicine Id cannot be blank").isNumeric().withMessage("Medicine id must be a number"),
         check("name").notEmpty().withMessage("Medicine Name cannot be blank").isLength({ min: 2 }).withMessage("Medicine Name must have atleast 4 characters"),
         check("price").notEmpty().withMessage("Medicine Price cannot be blank").isNumeric().withMessage("Medicine Price must be a number").isLength({ min: 2 }).withMessage("Medicine Price must have atleast 2 characters"),
@@ -40,14 +41,14 @@ exports.createMedicine =
                 ];
                 // query for inserting data in the database
                 con.query(sqlQuery, [values], (err) => {
-
-                    if (err) return console.log(err.message);
-
+                    // if err return server side error 
+                    if (err) return apiResponse.serverSideError(res, "Server Side Error");
+                    // returning a success response
                     return apiResponse.successResponse(res, "Date Entered Successfully");
-
                 });
                 // to catch the error
             } catch (error) {
+                // returning a server side error
                 return apiResponse.serverSideError(res, "Server Side Error");
             }
         }
