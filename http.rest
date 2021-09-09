@@ -4,4 +4,7 @@ GET http://localhost:1212/api/medicine/2
 ###GET - Get all the Data
 GET http://localhost:1212/api/medicine
 
+###GET - To pass an Query in the URL
+GET http://localhost:1212/api/medicine?Name=Crocin
+
 
