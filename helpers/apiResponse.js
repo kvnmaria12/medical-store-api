@@ -22,14 +22,6 @@ exports.serverSideError = (res, msg) => {
     return res.status(500).json(responseData);
 }
 
-exports.clientSideError = (res, msg) => {
-    const responseData = {
-        status: 0,
-        message: msg
-    }
-    return res.status(400).json(responseData);
-}
-
 exports.clientSideErrorWithData = (res, msg, data) => {
     const responseData = {
         status: 0,
