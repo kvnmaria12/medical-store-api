@@ -1,7 +1,7 @@
 const express = require("express");
-const medicineController = require("../controllers/fetchMedicineController");
+const medicineController = require("../controllers/deleteMedicineController");
 
 const router = express.Router();
-router.get(["/:id", "/"], medicineController.fetchMedicineDataWithId);
+router.delete("/:id", medicineController.deleteMedicineDataWithId);
 
 module.exports = router;
