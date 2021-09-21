@@ -1,29 +1,29 @@
 const express = require("express");
 const { con } = require("../database");
 const apiResponse = require("../helpers/apiResponse");
-const { validationResult, check } = require("express-validator");
+const { validationResult, check, body } = require("express-validator");
 
 // exporting the createMedicine function
 exports.createMedicine =
     [
         // // checking the request body with certain conditions using express-validator
-        // check("id").notEmpty().withMessage("Medicine Id cannot be blank").isNumeric().withMessage("Medicine id must be a number"),
-        // check("name").notEmpty().withMessage("Medicine Name cannot be blank").isLength({ min: 2 }).withMessage("Medicine Name must have atleast 4 characters"),
-        // check("price").notEmpty().withMessage("Medicine Price cannot be blank").isNumeric().withMessage("Medicine Price must be a number").isLength({ min: 2 }).withMessage("Medicine Price must have atleast 2 characters"),
-        // check("quantity").notEmpty().withMessage("Medicine Quantity cannot be blank").isNumeric().withMessage("Medicine quantity must be a number").isLength({ min: 2 }).withMessage("Medicine Quantity must have atleast 2 characters"),
-        // check("categories").notEmpty().withMessage("Medicine Quantity cannot be blank").isLength({ min: 2 }).withMessage("Medicine Categories must have atleast 2 characters"),
-        // check("manufacture_date").notEmpty().withMessage("Manufactured_Date cannot be blank").isLength({ min: 2 }).withMessage("Manufactured_Date must have atleast 2 characters"),
-        // check("expiry_date").notEmpty().withMessage("Expiry_Date cannot be blank").isLength({ min: 2 }).withMessage("Expiry_Date must have atleast 2 characters"),
+        body("id").notEmpty().withMessage("Medicine Id cannot be blank").isNumeric().withMessage("Medicine id must be a number"),
+        body("name").notEmpty().withMessage("Medicine Name cannot be blank").isLength({ min: 2 }).withMessage("Medicine Name must have atleast 4 characters"),
+        body("price").notEmpty().withMessage("Medicine Price cannot be blank").isNumeric().withMessage("Medicine Price must be a number").isLength({ min: 2 }).withMessage("Medicine Price must have atleast 2 characters"),
+        body("quantity").notEmpty().withMessage("Medicine Quantity cannot be blank").isNumeric().withMessage("Medicine quantity must be a number").isLength({ min: 2 }).withMessage("Medicine Quantity must have atleast 2 characters"),
+        body("categories").notEmpty().withMessage("Medicine Quantity cannot be blank").isLength({ min: 2 }).withMessage("Medicine Categories must have atleast 2 characters"),
+        body("manufacture_date").notEmpty().withMessage("Manufactured_Date cannot be blank").isLength({ min: 2 }).withMessage("Manufactured_Date must have atleast 2 characters"),
+        body("expiry_date").notEmpty().withMessage("Expiry_Date cannot be blank").isLength({ min: 2 }).withMessage("Expiry_Date must have atleast 2 characters"),
 
         // once the express-validator checks for the above condition then we come the route handler function
         (req, res) => {
             try {
-                // // the validationResult function checks for all the errors in the req.body 
-                // const errors = validationResult(req);
-                // // if errors are there then
-                // if (!errors.isEmpty()) {
-                //     return apiResponse.clientSideErrorWithData(res, "Client Side Error", { Message: errors.array() });
-                // }
+                // the validationResult function checks for all the errors in the req.body 
+                const errors = validationResult(req);
+                // if errors are there then
+                if (!errors.isEmpty()) {
+                    return apiResponse.clientSideErrorWithData(res, "Client Side Error", { Message: errors.array() });
+                }
 
                 const id = req.body.id;
                 const name = req.body.name;
@@ -50,7 +50,7 @@ exports.createMedicine =
                 // to catch the error
             } catch (error) {
                 // returning a server side error
-                // return apiResponse.serverSideError(res, "Server Side Error");
+                return apiResponse.serverSideError(res, "Server Side Error");
                 console.log(error)
             }
         }
