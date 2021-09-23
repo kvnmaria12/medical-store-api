@@ -1,7 +1,7 @@
 const express = require("express");
-const medicineController = require("../controllers/fetchMedicineController");
+const medicineController = require("../controllers/createMedicineController");
 
 const router = express.Router();
-router.get(["/:id", "/"], medicineController.fetchMedicineDataWithId);
+router.post("/", medicineController.createMedicineDataWithId);
 
 module.exports = router;
