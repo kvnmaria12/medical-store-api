@@ -5,8 +5,7 @@ const { validationResult, check, body } = require("express-validator");
 
 exports.createMedicine =
     [
-        body("id").notEmpty().withMessage("Medicine Id cannot be blank").isNumeric().withMessage("Medicine id must be a number"),
-        body("name").notEmpty().withMessage("Medicine Name cannot be blank").isLength({ min: 2 }).withMessage("Medicine Name must have atleast 4 characters"),
+        body("name").notEmpty().withMessage("Medicine Name cannot be blank").isLength({ min: 2 }).withMessage("Medicine Name must have atleast 2 characters"),
         body("price").notEmpty().withMessage("Medicine Price cannot be blank").isNumeric().withMessage("Medicine Price must be a number").isLength({ min: 2 }).withMessage("Medicine Price must have atleast 2 characters"),
         body("quantity").notEmpty().withMessage("Medicine Quantity cannot be blank").isNumeric().withMessage("Medicine quantity must be a number").isLength({ min: 2 }).withMessage("Medicine Quantity must have atleast 2 characters"),
         body("categories").notEmpty().withMessage("Medicine Quantity cannot be blank").isLength({ min: 2 }).withMessage("Medicine Categories must have atleast 2 characters"),
