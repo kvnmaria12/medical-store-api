@@ -1,16 +1,14 @@
 const express = require("express");
-const medicineController = require("../controllers/updateMedicineController");
-const medicineController = require("../controllers/deleteMedicineController");
-const medicineController = require("../controllers/createMedicineController");
-const medicineController = require("../controllers/fetchMedicineController");
+const updateMedicineController = require("../controllers/updateMedicineController");
+const deleteMedicineController = require("../controllers/deleteMedicineController");
+const createMedicineController = require("../controllers/createMedicineController");
+const fetchMedicineController = require("../controllers/fetchMedicineController");
 
 const router = express.Router();
-router.get(["/:id", "/"], medicineController.fetchMedicineDataWithId);
-const router = express.Router();
-router.put("/:id", medicineController.updateMedicineDataWithId);
-const router = express.Router();
-router.delete("/:id", medicineController.deleteMedicineDataWithId);
-const router = express.Router();
-router.post("/", medicineController.createMedicineDataWithId);
+
+router.get(["/:id", "/"], fetchMedicineController.fetchMedicineDataWithId);
+router.put("/:id", updateMedicineController.updateMedicineDataWithId);
+router.delete("/:id", deleteMedicineController.deleteMedicineDataWithId);
+router.post("/", createMedicineController.createMedicineDataWithId);
 
 module.exports = router;
