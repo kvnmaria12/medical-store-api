@@ -27,10 +27,10 @@ exports.createMedicineDataWithId =
                 const manufacture_date = req.body.manufacture_date;
                 const expiry_date = req.body.expiry_date;
 
-                const sqlQuery = `INSERT INTO medicine(id, name, price, quantity,  categories, manufacture_date, expiry_date) VALUES ?`;
+                const sqlQuery = `INSERT INTO medicine(name, price, quantity,  categories, manufacture_date, expiry_date) VALUES ?`;
 
                 const values = [
-                    [id, name, price, quantity, categories, manufacture_date, expiry_date]
+                    [name, price, quantity, categories, manufacture_date, expiry_date]
                 ];
 
                 con.query(sqlQuery, [values], (err => {
